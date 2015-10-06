@@ -1,0 +1,45 @@
+<snippet>
+	<content><![CDATA[
+/**
+ * @Route(
+ *     path = "${1:lower_entity_name}",
+ *     methods = {"${2:GET}"},
+ *     name = "${3:get}_${1:lower_entity_name}"
+ * )
+ */
+public function ${3:get}${4:EntityName}(Request \$request${5})
+{
+	try {
+		/**
+		 * Define um FormType para transformar valores de um Request em um Object
+		 * Tenha certeza que a classe FormType foi importada
+		 * Descomente para utilizar o FormType
+		 * Se for a criação de um novo item remova o último parametro (\$id)
+		 */
+		// \$item = \$this->createObject(\$request, new FormType(), \$id);
+
+		/* Instancia do repositório */
+		\$repo = \$this->getRepository('${4:EntityName}');
+
+		/* Utiliza o repositório para buscar/salvar dados no banco */
+		\$response = \$repo->${6:MethodName}(${7});
+
+		/**
+		 * Define um Serializer para transformar Objects em Array
+		 * Tenha certeza que a classe Serializer foi importada
+		 */
+		\$this->setSerializer(new Serializer());
+
+		/* Retorna resposta esperada em JSON */
+		return \$this->jsonResponse(\$response);
+	} catch (\Exception \$e) {
+		/* Se ocorrerem erros, retornará HTTP STATUS 500
+		return \$this->jsonResponse(500);
+	}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>symfony-action-controller</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.php</scope>
+</snippet>

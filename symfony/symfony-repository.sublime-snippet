@@ -1,0 +1,67 @@
+<snippet>
+	<content><![CDATA[
+/**
+ * Retorna uma lista de objetos
+ *
+ * @return Array
+ **/
+public function get${1:Item}s()
+{
+	/* Utiliza o repositório para buscar dados no banco */
+	return \$this->findBy([]);
+}
+
+/**
+ * Retorna um único objeto
+ *
+ * @param integer \$id Identificador único do objeto
+ * @return Object
+ **/
+public function getOne${1:Item}(\$id)
+{
+	/* Utiliza o repositório para buscar dados no banco */
+	return \$this->findOneBy([ "id" => \$id ]);
+}
+
+/**
+ * Criação de um novo registro
+ *
+ * @param Object \$item
+ * @return Object criado
+ **/
+public function save${1:Item}(\$item)
+{
+	\$em = \$this->getEntityManager();
+	\$em->persist(\$item);
+	\$em->flush();
+
+	return \$item;
+}
+
+/**
+ * Exclusão do registro
+ *
+ * @param integer \$id Identificador único do objeto
+ * @return void
+ **/
+public function delete${1:Item}(\$id)
+{
+	\$item = \$this->getOne${1:Item}(\$id);
+
+	if ( !\$item ) {
+		throw new Exception("${1:Item}: item não pode ser excluído");			
+	}
+
+	\$em = \$this->getEntityManager();
+	\$em->remove(\$item);
+	\$em->flush();
+
+	return \$item;
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>symfony-repository</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.php</scope>
+</snippet>

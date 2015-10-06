@@ -1,0 +1,116 @@
+<snippet>
+	<content><![CDATA[
+/**
+ * @Route(
+ *     path = "${1:lower_entity_name}",
+ *     methods = {"GET"},
+ *     name = "get_${1:lower_entity_name}"
+ * )
+ */
+public function get${3:EntityName}()
+{
+    try {
+        \$repo = \$this->getRepository('${3:EntityName}');
+        \$response = \$repo->get${3:EntityName}();
+    
+        \$this->setSerializer(new Serializer());
+    
+        return \$this->jsonResponse(\$response);
+    } catch (\Exception \$e) {
+        return \$this->jsonResponse(500);
+    }
+}
+
+/**
+ * @Route(
+ *     path = "${1:lower_entity_name}",
+ *     methods = {"POST"},
+ *     name = "create_${1:lower_entity_name}"
+ * )
+ */
+public function create${3:EntityName}()
+{
+    try {
+        \$item = $this->createObject(\$request, new FormType());
+            
+        \$repo = \$this->getRepository('${3:EntityName}');
+        \$response = \$repo->save${4:SingularEntityName}(\$item);
+    
+        \$this->setSerializer(new Serializer());
+    
+        return \$this->jsonResponse(\$response);
+    } catch (\Exception \$e) {
+        return \$this->jsonResponse(500);
+    }
+}
+
+/**
+ * @Route(
+ *     path = "${1:lower_entity_name}/{id}",
+ *     methods = {"GET"},
+ *     name = "get_one_${2:lower_sigular_entity_name}"
+ * )
+ */
+public function getOne${4:SingularEntityName}(\$id)
+{
+    try {
+        \$repo = \$this->getRepository('${3:EntityName}');
+        \$response = \$repo->getOne${4:SingularEntityName}(\$id);
+    
+        \$this->setSerializer(new Serializer());
+    
+        return \$this->jsonResponse(\$response);
+    } catch (\Exception \$e) {
+        return \$this->jsonResponse(500);
+    }
+}
+
+/**
+ * @Route(
+ *     path = "${1:lower_entity_name}/{id}",
+ *     methods = {"PUT"},
+ *     name = "update_one_${2:lower_sigular_entity_name}"
+ * )
+ */
+public function updateOne${4:SingularEntityName}(\$id)
+{
+    try {
+        \$item = $this->createObject(\$request, new FormType(), \$id);
+                    
+        \$repo = \$this->getRepository('${3:EntityName}');
+        \$response = \$repo->save${4:SingularEntityName}(\$item);
+    
+        \$this->setSerializer(new Serializer());
+    
+        return \$this->jsonResponse(\$response);
+    } catch (\Exception \$e) {
+        return \$this->jsonResponse(500);
+    }
+}
+
+/**
+ * @Route(
+ *     path = "${1:lower_entity_name}/{id}",
+ *     methods = {"DELETE"},
+ *     name = "delete_one_${2:lower_sigular_entity_name}"
+ * )
+ */
+public function deleteOne${4:SingularEntityName}($id)
+{
+    try {
+        \$repo = \$this->getRepository('${3:EntityName}');
+        \$response = \$repo->delete${4:SingularEntityName}(\$id);
+    
+        \$this->setSerializer(new Serializer());
+    
+        return \$this->jsonResponse(\$response);
+    } catch (\Exception \$e) {
+        return \$this->jsonResponse(500);
+    }
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>symfony-controller</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.php</scope>
+</snippet>
