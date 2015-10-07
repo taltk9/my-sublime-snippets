@@ -10,6 +10,9 @@
 public function ${3:get}${4:EntityName}(Request \$request${5})
 {
 	try {
+		\$config = RequestHelper::split(\$request);
+		\$fields = \$config["fields"];
+
 		/**
 		 * Define um FormType para transformar valores de um Request em um Object
 		 * Tenha certeza que a classe FormType foi importada
@@ -28,7 +31,12 @@ public function ${3:get}${4:EntityName}(Request \$request${5})
 		 * Define um Serializer para transformar Objects em Array
 		 * Tenha certeza que a classe Serializer foi importada
 		 */
-		\$this->setSerializer(new Serializer());
+		\$serializer = new Serializer();
+		if ( !empty(\$fields) ) {
+		    \$serializer->setEntityManager(\$this->getEntityManager())
+		               ->setFields(\$fields);
+		}
+		\$this->setSerializer(\$serializer);
 
 		/* Retorna resposta esperada em JSON */
 		return \$this->jsonResponse(\$response);
