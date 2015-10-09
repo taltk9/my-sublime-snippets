@@ -1,0 +1,51 @@
+<snippet>
+	<content><![CDATA[
+/**
+ * Função do getBy e countRows
+ * 
+ * callback - Function que recebe como parametros QueryBuilder (\$qb) e os dados enviados por http parameters (\$data)
+ */
+\$callback = function (&\$qb, \$data) {
+	// \$qb
+	//     ->andWhere('${1:EntityAlias}.field = :value')->setParameter('value', 'some value') // default where method
+	//     ->andWhere(\$qb->expr()->in('${1:EntityAlias}.field', [1, 2, 3])) // in expression with array
+	//     ->andWhere(\$qb->expr()->orX(\$qb->expr()->lte('${1:EntityAlias}.age', 40),'${1:EntityAlias}.numChild = 0'))
+	//     ->andWhere(\$qb->expr()->like('${1:EntityAlias}.firstname', ':value'))->setParameter('value', '%' . 'Gui' . '%')
+
+	//     ->having(\$qb->expr()->gte('${1:EntityAlias}.salary', ':value'))->setParameter('value', 'some value')
+	//     ->andHaving(\$qb->expr()->gt(\$qb->expr()->count('${1:EntityAlias}.numChild'), 0))
+
+	//     ->groupBy('${1:EntityAlias}.id')
+	//     ->addGroupBy('${1:EntityAlias}.name')
+
+	//     ->orderBy('${1:EntityAlias}.surname', 'DESC')
+	//     ->addOrderBy('${1:EntityAlias}.firstName', 'ASC')
+
+	//     ->join('${1:EntityAlias}.Group', 'otherTableAlias', 'WITH', '${1:EntityAlias}.status = ?1', 'otherTableAlias.id')
+	// ;
+};
+
+/**
+ * getBy(\$callback, \$requestData, \$responseType)
+ * 
+ * callback - Function que recebe como parametros QueryBuilder (\$qb) e os dados enviados por http parameters (\$data)
+ * requestData - Resultado da função RequestHelper::split
+ * responseType - Tipo de resposta ('object' | 'array'). Por padrão retornará um objeto
+ */
+\$result = \$this->getBy(\$callback, \$requestData);
+
+/**
+ * countRows(\$callback, \$requestData)
+ * 
+ * callback - Function que recebe como parametros QueryBuilder (\$qb) e os dados enviados por http parameters (\$data)
+ * requestData - Resultado da função RequestHelper::split
+ */
+\$total = \$this->countRows(\$callback, \$requestData);
+
+return [ 'data' => \$result, 'total' => \$total ];
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>bsa-getby</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.php</scope>
+</snippet>

@@ -1,0 +1,19 @@
+<snippet>
+	<content><![CDATA[
+/**
+ * @Route(
+ *     path = "${1:lower_entity_name}",
+ *     methods = {"${2:GET}"},
+ *     name = "${3:get}_${1:lower_entity_name}"
+ * )
+ */
+public function ${3:get}${4:EntityName}(Request \$request${5})
+{
+	${6}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>symfony-controller-function</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.php</scope>
+</snippet>
