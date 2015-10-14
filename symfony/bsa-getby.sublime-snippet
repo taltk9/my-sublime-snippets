@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 /**
- * Função do getBy e countRows
+ * Função callback do getListBy
  * 
  * callback - Function que recebe como parametros QueryBuilder (\$qb) e os dados enviados por http parameters (\$data)
  */
@@ -26,23 +26,13 @@
 };
 
 /**
- * getBy(\$callback, \$requestData, \$responseType)
+ * getListBy(\$callback, \$requestData, \$responseType)
  * 
  * callback - Function que recebe como parametros QueryBuilder (\$qb) e os dados enviados por http parameters (\$data)
  * requestData - Resultado da função RequestHelper::split
  * responseType - Tipo de resposta ('object' | 'array'). Por padrão retornará um objeto
  */
-\$result = \$this->getBy(\$callback, \$requestData);
-
-/**
- * countRows(\$callback, \$requestData)
- * 
- * callback - Function que recebe como parametros QueryBuilder (\$qb) e os dados enviados por http parameters (\$data)
- * requestData - Resultado da função RequestHelper::split
- */
-\$total = \$this->countRows(\$callback, \$requestData);
-
-return [ 'data' => \$result, 'total' => \$total ];
+return \$this->getListBy(\$callback, \$requestData);
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>bsa-getby</tabTrigger>
